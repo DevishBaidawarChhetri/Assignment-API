@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('APIAssignment', 'root', 'devish123', {
+const sequelize = new Sequelize('apiassignment', 'root', 'devish123', {
     host: 'localhost',
     dialect: 'mysql', /* one of 'mysql' | 'mariadb' | 'postgres' | 'mssql' */
     logging: false

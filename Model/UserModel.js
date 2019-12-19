@@ -17,16 +17,15 @@ var users = dbConfig.sequelize.define('user', {
         type:dbConfig.Sequelize.TEXT,
         allowNull: false
     }},{
-        freezeTableName: true,
-        tableName: 'user_table'
-    });
-
+    freezeTableName:true,
+    tableName: 'user_table'});
+    
     users.sync({force:false})
     .then(function(result){
-
+        //console.log("table made successfully")
     })
     .catch(function(err){
-        console.log
+        console.log(err)
     })
 
-    module.exports = users
+module.exports = users

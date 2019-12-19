@@ -1,2 +1,4 @@
-require ('./databaseConfig/databaseConfig.js');
-console.log("Hello World!");
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const multer = require('multer');
