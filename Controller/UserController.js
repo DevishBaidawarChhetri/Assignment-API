@@ -91,5 +91,5 @@ function deleteuser(req, res, next){
 }
 
 module.exports = {
-    Validator,genHash,Register,UserExist,UploadImage,deleteuser
+    Validator, genHash, Register, UserExist, deleteuser
 }
