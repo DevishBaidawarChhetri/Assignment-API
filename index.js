@@ -15,6 +15,14 @@ var swaggerDefinition={
         description:"This is My documentation",
         version:"1.0.0"
     },
+    securityDefinitions: {
+        bearerAuth:{
+            type: 'apiKey',
+            name: 'authorization',
+            in:'header',
+            scheme: 'bearer'
+        }
+    },
     host:"localhost:3020",
     basePath:"/"
 }
@@ -62,13 +70,14 @@ app.post('/registration', userController.Validator,userController.UserExist, use
  *   responses:
  *    200:
  *     description: registered sucessfully
- *    409:
+ *    400:
  *     description: user already exists
  *    500:
  *     description: internal server error
  */
 
-app.post('/login', authController.validation,authController.passwordChecker, authController.jwtTokenGen);
+app.post('/login', authController.validation,authController.passwordChecker,
+authController.jwtTokenGen);
 /**
  * @swagger
  * /login:
@@ -100,8 +109,8 @@ app.post('/login', authController.validation,authController.passwordChecker, aut
  *     description: internal server error
  */
 
-// app.delete('/users/:id', userController.deleteuser);
-app.delete('/users/:id', authController.verifyToken, userController.deleteuser);
+app.delete('/users/:id', userController.deleteuser);
+// app.delete('/users/:id', authController.verifyToken, userController.deleteuser);
 /**
 * @swagger
 * /users/{id}:
@@ -120,9 +129,13 @@ app.delete('/users/:id', authController.verifyToken, userController.deleteuser);
 *      in: path
 *      required: true
 *      description: please enter id
-*   responses:
-*    500:
-*     description: User not found
+ *   responses:
+ *    200:
+ *     description: Deleted Successfully
+ *    400:
+ *     description: Invalid Token
+ *    500:
+ *     description: Internal server error
 */
 
 app.listen(3020);

@@ -41,7 +41,7 @@ function UserExist(req, res, next){
             next();
         }
         else{
-        res.json ({status:409, message:'user already exist'})
+        res.json ({status:400, message:'user already exist'})
         }
     }).catch(function(err){
         res.json(err);
@@ -56,7 +56,7 @@ function Register(req, res, next){
     })
     .then(function(result){
         console.log(result);
-        res.status(201);
+        res.status(200);
         res.json({status:200,message:'registered successfully'});
         next();
     }).catch(function(err){
@@ -67,8 +67,8 @@ function Register(req, res, next){
 // For User Deletion
 function deleteuser(req, res, next){
     if(req.params.id === null || req.params.id === undefined){
-        res.status(404);
-        res.json({status:404,message:"Id not provided"})
+        res.status(400);
+        res.json({status:400,message:"Id not provided"})
     }
     users.destroy({
         where:{

@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const users = require('../Model/UserModel.js');
+var secret = 'MySecretKey';
 
 function validation(req, res, next){
     if(req.body.username === "" || req.body.password === ""){
